@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  #mobile-menu > .backdrop {
+    display: none;
+  }
+
+  #mobile-menu > .menu {
+    transform: translateX(-100%);
+  }
+
+  #mobile-menu.visible > .backdrop {
+    display: block;
+  }
+
+  #mobile-menu.visible > .menu {
+    transform: translateX(0) !important;
+  }
+}

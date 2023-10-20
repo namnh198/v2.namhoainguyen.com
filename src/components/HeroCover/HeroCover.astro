@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import coverHomeImg from "~/assets/images/cover-home.webp";
+import HeaderSocial from "./HeroSocial.astro";
+const socials = [
+  {
+    title: 'Gmail',
+    icon: 'tabler:brand-gmail',
+    link: 'mailto:namnhn98@gmail.com',
+    color: 'red'
+  },
+  {
+    title: 'Facebook',
+    icon: 'tabler:brand-facebook',
+    link: 'https://fb.me/namnh198',
+    color: 'sky'
+  },
+  {
+    title: 'Github',
+    icon: 'tabler:brand-github',
+    link: 'https://github.com/namnh198',
+    color: 'teal'
+  },
+  {
+    title: 'Linkedin',
+    icon: 'tabler:brand-linkedin',
+    link: 'https://linkedin.com/namnh198',
+    color: 'blue'
+  }
+];
+---
+<div class="nc-BgGlassmorphism absolute inset-x-0 md:top-10 xl:top-20 min-h-0 pl-20 py-24 flex overflow-hidden z-0">
+  <div class="block bg-[#ef233c] w-72 h-72 rounded-full mix-blend-multiply filter blur-3xl opacity-10 lg:w-96 lg:h-96"></div>
+  <div class="block bg-[#04868b] w-72 h-72 -ml-20 mt-40 rounded-full mix-blend-multiply filter blur-3xl opacity-10 lg:w-96 lg:h-96 nc-animation-delay-2000"></div>
+</div>
+<div class="container">
+  <div class="py-16 relative flex flex-col-reverse md:flex-row justify-end">
+    <div class="md:absolute z-10 md:start-0 md:top-1/2 md:-translate-y-1/2 w-full -mt-8 md:mt-0 px-3 sm:px-6 md:px-0 md:w-3/5 lg:w-2/5">
+      <div class="p-4 sm:p-8 xl:py-14 md:px-10 bg-white/40 dark:bg-neutral-900/40 md:backdrop-filter md:backdrop-blur-lg shadow-lg dark:shadow-2xl rounded-3xl space-y-3 sm:space-y-5">
+        <div>
+          <h1 class="text-2xl xl:text-3xl font-semibold">Hi! <span class="inline-block animation-wave">👋</span> I'm Nam</h1>
+        </div>
+        <p class="text-sm md:text-base">I'm a senior full-stack engineer based in Ho Chi Minh City, Viet Nam with a focus on Web Design and Cloud Services. On this site, You can find the notes that I made when I discovered something.</p>
+        <p class="text-sm md:text-base">You can follow me more on:</p>
+        <div class="flex flex-wrap justify-center">
+          {socials.map(item => <HeaderSocial item={item}/>)}
+        </div>
+      </div>
+    </div>
+    <div class="w-full md:w-3/5 lg:w-2/3">
+      <a href="/about" class="block relative aspect-w-16 aspect-h-12 bg-[#f8f8f8] rounded-3xl sm:aspect-h-9 md:aspect-h-14 lg:aspect-h-10 2xl:aspect-h-9">
+        <Image src={coverHomeImg} class="absolute inset-0 object-cover rounded-3xl" alt="Hi! I'm Nam"/>
+      </a>
+    </div>
+  </div>
+</div>
