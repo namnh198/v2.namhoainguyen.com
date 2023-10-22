@@ -1,9 +1,15 @@
 import type { ImageMetadata } from 'astro';
 import type { AstroComponentFactory } from 'astro/dist/runtime/server';
 
-
 export interface Metadata {
   title: string;
+}
+
+export interface SearchIndex {
+  title: string;
+  id: string;
+  permalink: string;
+  heading: string;
 }
 
 export interface Category {
@@ -15,6 +21,12 @@ export interface Category {
   excerpt?: string;
 }
 
+export interface Tag {
+  id: string;
+  permalink: string;
+  title: string;
+}
+
 export interface Post {
   id: string;
   slug: string;
@@ -24,7 +36,7 @@ export interface Post {
   image?: ImageMetadata;
   video?: string;
   categories?: Array<Category>;
-  tags?: Array<string>;
+  tags?: Array<Tag>;
   series?: string;
   part?: number;
   draft?: boolean;

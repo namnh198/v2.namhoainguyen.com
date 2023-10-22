@@ -1,31 +1,41 @@
 ---
-import { Image } from "astro:assets";
-import { navigation } from "~/navigation";
-import NavbarMobile from "./NavbarMobile.astro";
-import NavbarItem from "./NavbarItem.astro";
-import logoImage from "~/assets/images/avatar_memoji.svg";
+import { Image } from 'astro:assets';
+import { navigation } from '~/navigation';
+import { searchIndex } from '~/utils/blog';
+import NavbarMobile from './NavbarMobile.astro';
+import NavbarItem from './NavbarItem.astro';
+import Search from './Search';
+import logoImage from '~/assets/images/avatar_memoji.svg';
 
 interface Props {
   activeMenu: string;
 }
 
 const { activeMenu } = Astro.props;
+const searchData = await searchIndex();
 ---
 
-<header class="sticky top-0 w-full z-40 bg-white dark:bg-neutral-900 border-b border-neutral-200/70 dark:border-transparent">
+<header
+  class="sticky top-0 w-full z-40 bg-white dark:bg-neutral-900 border-b border-neutral-200/70 dark:border-transparent"
+>
   <div class="container">
     <div class="h-16 sm:h-18 flex justify-between">
       <div class="flex items-center flex-1">
-        <NavbarMobile navigation={navigation} activeMenu={activeMenu}/>
+        <NavbarMobile navigation={navigation} activeMenu={activeMenu} />
         <div class="lg:flex-1 flex items-center">
           <a href="/" class="inline-flex items-center shrink-0 outline-none">
-            <Image src={logoImage} alt="Logo" class="w-10 h-10 sm:w-12 sm:h-12" width="40" height="40"/>
+            <Image src={logoImage} alt="Logo" class="w-10 h-10 sm:w-12 sm:h-12" width="40" height="40" />
           </a>
         </div>
       </div>
       <nav class="flex-[2] hidden md:flex items-center justify-center mx-4 gap-x-2">
         {navigation.map((menu) => <NavbarItem menu={menu} activeMenu={activeMenu} />)}
       </nav>
+      <div class="flex-1 flex items-center justify-end text-slate-700 gap-x-2">
+        <div class="flex items-center justify-end">
+          <Search client:load searchData={searchData} />
+        </div>
+      </div>
     </div>
   </div>
 </header>
