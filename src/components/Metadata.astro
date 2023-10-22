@@ -8,9 +8,30 @@ interface Props extends Metadata {
 const { title } = Astro.props;
 ---
 
-<meta charset='UTF-8' />
-<meta name='description' content='Astro description' />
-<meta name='viewport' content='width=device-width' />
-<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-<meta name='generator' content={Astro.generator} />
+<meta charset="UTF-8" />
+<meta name="description" content="Astro description" />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
 <title>{title}</title>
+
+<script is:inline>
+  function getTheme() {
+    const theme = localStorage.getItem('theme') || 'system';
+    if (theme === 'system') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    return theme;
+  }
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }
+
+  applyTheme(getTheme());
+</script>
