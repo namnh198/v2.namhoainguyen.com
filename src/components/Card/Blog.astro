@@ -10,29 +10,32 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { image = '', categories = [] } = post;
+const { image, categories = [], title, permalink, excerpt, publishedAt } = post;
 ---
 
-<div class="relative flex flex-row items-center group h-full">
+<article class="relative flex group flex-row items-center sm:p-4 sm:rounded-3xl sm:bg-white sm:dark:bg-neutral-900 sm:border border-neutral-200 dark:border-neutral-700 h-full">
+  <a href={permalink} class="absolute inset-0 z-0" title={title}></a>
   <div class="flex flex-col flex-grow">
-    <div class="space-y-3.5">
+    <div class="space-y-3 mb-4">
       {categories && <Badges badges={categories} />}
-      <a class="block" href={post.permalink}>
+      <a class="relative block" href={permalink}>
         <h2
           class="block font-medium sm:font-semibold text-neutral-900 dark:text-neutral-100 hover:text-indigo-900 dark:hover:text-indigo-300 text-sm sm:text-base xl:text-lg"
         >
-          <span class="line-clamp-2">{post.title}</span>
+          <span class="line-clamp-2" title={title}>{title}</span>
         </h2>
       </a>
       {
-        post.excerpt && (
+        excerpt && (
           <div class="hidden sm:block sm:mt-2">
-            <div class="text-neutral-500 dark:text-neutral-400 text-sm line-clamp-2">{post.excerpt}</div>
+            <div class="text-neutral-500 dark:text-neutral-400 text-sm line-clamp-2">{excerpt}</div>
           </div>
         )
       }
+    </div>
+    <div class="flex items-center flex-wrap justify-between mt-auto">
       <div class="inline-flex items-center flex-wrap text-neutral-800 dark:text-neutral-200 leading-none text-xs">
-        <a href="#" class="relative flex items-center space-x-2">
+        <a href={permalink} class="relative flex items-center space-x-2">
           <span
             class="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold shadow-inner rounded-full h-7 w-7 text-sm ring-1 ring-white dark:ring-neutral-900"
           >
@@ -45,23 +48,21 @@ const { image = '', categories = [] } = post;
           </span>
         </a>
         <span class="text-neutral-500 dark:text-neutral-400 mx-[6px] font-medium">·</span>
-        <span class="text-neutral-500 dark:text-neutral-400 font-normal">{getFormattedDate(post.publishedAt)}</span>
+        <span class="text-neutral-500 dark:text-neutral-400 font-normal">{getFormattedDate(publishedAt)}</span>
       </div>
     </div>
   </div>
   {
     image && (
-      <div class="block flex-shrink-0 w-24 sm:w-36 md:w-44 xl:w-56 ms-3 sm:ms-6 rounded-3xl overflow-hidden z-0 mb-5 sm:mb-0">
-        <a href={post.permalink} class="block w-full h-0 aspect-h-1 aspect-w-1 relative">
-          <div class="absolute inset-0">
-            <Image
-              src={post.image}
-              alt={post.title}
-              class="object-cover w-full h-full rounded-3xl group-hover:scale-105 transition-transform duration-500 "
-            />
-          </div>
-        </a>
+    <a href={permalink} class="block relative flex-shrink-0 w-24 h-24 sm:w-40 sm:h-full ms-3 sm:ms-5 rounded-2xl overflow-hidden z-0">
+      <div class="absolute inset-0">
+        <Image
+          src={image}
+          alt={title}
+          class="object-cover w-full h-full rounded-3xl group-hover:scale-105 transition-transform duration-500"
+        />
       </div>
+    </a>
     )
   }
-</div>
+</article>

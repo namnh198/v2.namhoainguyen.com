@@ -9,7 +9,7 @@ interface Props {
   badges: BadgeProps[];
 }
 const {badges} = Astro.props;
-const variant = (color) => {
+const variant = (color: string) => {
   switch (color) {
     case 'red':
       return 'text-red-700 bg-red-50 ring-red-600/20 hover:bg-red-600 hover:text-red-100';
@@ -23,4 +23,3 @@ const variant = (color) => {
 <div class="flex flex-wrap items-center gap-1.5">
   {badges.map((badge) => <a href={badge.permalink} class:list={['transition-colors duration-300 inline-flex px-2.5 py-1 font-medium text-xs rounded-full relative ring-1 ring-inset', variant(badge.color)]}>{badge.title}</a>)}
 </div>
-

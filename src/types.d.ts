@@ -1,9 +1,6 @@
+import type { ImageMetadata } from 'astro';
 import type { AstroComponentFactory } from 'astro/dist/runtime/server';
 
-export interface Image {
-  src: string;
-  alt?: string;
-}
 
 export interface Metadata {
   title: string;
@@ -24,7 +21,7 @@ export interface Post {
   permalink: string;
   title: string;
   excerpt?: string;
-  image?: Image;
+  image?: ImageMetadata;
   video?: string;
   categories?: Array<Category>;
   tags?: Array<string>;

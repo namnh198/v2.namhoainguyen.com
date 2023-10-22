@@ -4,7 +4,7 @@ title: How to install Magento on Docker
 image: ./img/cai-dat-magento2-tren-docker.png
 draft: false
 part: 1
-topics:
+categories:
   - magento
 ---
 
