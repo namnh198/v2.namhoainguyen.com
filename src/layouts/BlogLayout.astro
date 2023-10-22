@@ -1,0 +1,27 @@
+---
+import type { Page } from 'astro';
+import type { Metadata, Post } from '~/types';
+import PageLayout from './PageLayout.astro';
+import HeaderBlog from '~/components/Header/HeaderBlog.astro';
+
+interface Props {
+  metadata: Metadata;
+  activeMenu: string;
+  type?: string;
+  page: Page;
+  posts: Post[];
+}
+
+const { metadata, page, type = '', posts } = Astro.props;
+const header = {
+  title: metadata.title,
+  total: page.total,
+  type: type,
+  excerpt: 'Curated lists and insight into burgeoning industries, topics, and communities.',
+};
+---
+
+<PageLayout {...Astro.props}>
+  <HeaderBlog {...header} />
+  <slot />
+</PageLayout>

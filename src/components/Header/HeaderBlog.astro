@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title: string;
+  image?: ImageMetadata;
+  type?: string;
+  total?: number;
+  excerpt?: string;
+}
+
+const { title, image, type, total = 0, excerpt = '' } = Astro.props;
+const icon = type === 'category' ? 'tabler:category' : type === 'tag' ? 'tabler:tags' : 'tabler:article';
+---
+
+<div class='container pt-4 md:pt-10'>
+  <div
+    class='relative border border-neutral-200/70 dark:border-neutral-700 p-5 lg:p-7 rounded-3xl md:rounded-[2rem] flex flex-col md:flex-row gap-4 md:gap-6 xl:gap-12'
+  >
+    <div class='shrink-0'>
+      <div
+        class='wil-avatar relative flex-shrink-0 overflow-hidden rounded-3xl w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 ring-4 ring-white dark:ring-0 z-0'
+      >
+        {
+          !image && (
+            <div class='absolute inset-0 bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center'>
+              <Icon name={icon} class='lg:h-24 h-12 lg:w-24 w-12' />
+            </div>
+          )
+        }
+        {image && <Image src={image} width={400} height={300} alt={title} />}
+      </div>
+    </div>
+    <div class='grow'>
+      <div class='max-w-screen-md space-y-3.5'>
+        <h2 class='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold'>
+          <span>{title}</span>
+        </h2>
+        {
+          total > 0 && (
+            <div class='flex items-center text-sm font-medium space-x-2 rtl:space-x-reverse text-neutral-500 dark:text-neutral-400 '>
+              <Icon name='heroicons:fire' size={28} />
+              <span class='text-neutral-700 dark:text-neutral-300'>{total} Articles</span>
+            </div>
+          )
+        }
+        {
+          excerpt && (
+            <span class='block text-sm sm:text-base text-neutral-500 dark:text-neutral-400' set:html={excerpt} />
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>

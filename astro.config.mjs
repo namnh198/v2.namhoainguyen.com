@@ -11,9 +11,10 @@ export default defineConfig({
     }),
     icon({
       include: {
-        tabler: ['*'],
-        'fa6-brands': ['*']
-      }
+        'tabler': ['*'],
+        'fa6-brands': ['*'],
+        'heroicons': ['*']
+      }  
     }),
   ]
 });

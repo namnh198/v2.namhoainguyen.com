@@ -1,0 +1,18 @@
+---
+import type { Metadata } from '~/types';
+import Layout from './Layout.astro';
+import Navbar from '~/components/Navbar/Navbar.astro';
+
+interface Props {
+  metadata: Metadata;
+  activeMenu?: string;
+}
+const { metadata, activeMenu = '', ...props } = Astro.props;
+---
+
+<Layout {...props} metadata={metadata}>
+  <slot name='navbar'>
+    <Navbar activeMenu={activeMenu} />
+  </slot>
+  <slot />
+</Layout>
