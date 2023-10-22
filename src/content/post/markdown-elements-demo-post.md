@@ -7,7 +7,7 @@ image: ./img/pexels-photo-6153354-1.webp
 series: 'Markdown Cheatsheet'
 part: 1
 draft: false
-categories: 
+categories:
   - magento
 tags:
   - markdown
@@ -177,12 +177,11 @@ Reprehenderit non eu quis in ad elit esse qui aute id [incididunt](#!) dolore ci
 
 ```astro
 ---
-publishDate: 'Aug 02 2022'
-title: 'Markdown elements demo post'
+publishDate: 'Aug 02 2022';
+title: 'Markdown elements demo post';
 ---
-import Logo from "~/components/Logo.astro";
 
-## MDX
+import Logo from "~/components/Logo.astro"; ## MDX
 ```
 
 [[Top]](#top)

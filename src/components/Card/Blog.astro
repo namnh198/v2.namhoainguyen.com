@@ -1,38 +1,46 @@
 ---
-import { Icon } from 'astro-icon/components';
-import type { Post } from '~/types';
-import { getFormattedDate } from "~/utils/utils";
-import meImg from '~/assets/images/me.png';
 import { Image } from 'astro:assets';
-import Badges from "~/components/Badges.astro";
+import type { Post } from '~/types';
+import { getFormattedDate } from '~/utils/utils';
+import meImg from '~/assets/images/me.png';
+import Badges from '~/components/Badges.astro';
 
 interface Props {
-  post: Post
+  post: Post;
 }
 
 const { post } = Astro.props;
-const {image = '', categories = [], video = ''} = post;
+const { image = '', categories = [] } = post;
 ---
+
 <div class="relative flex flex-row items-center group h-full">
   <div class="flex flex-col flex-grow">
     <div class="space-y-3.5">
-      {categories && <Badges badges={categories}/>}
+      {categories && <Badges badges={categories} />}
       <a class="block" href={post.permalink}>
-        <h2 class="block font-medium sm:font-semibold text-neutral-900 dark:text-neutral-100 hover:text-indigo-900 dark:hover:text-indigo-300 text-sm sm:text-base xl:text-lg">
+        <h2
+          class="block font-medium sm:font-semibold text-neutral-900 dark:text-neutral-100 hover:text-indigo-900 dark:hover:text-indigo-300 text-sm sm:text-base xl:text-lg"
+        >
           <span class="line-clamp-2">{post.title}</span>
         </h2>
       </a>
-      {post.excerpt && <div class="hidden sm:block sm:mt-2">
-        <div class="text-neutral-500 dark:text-neutral-400 text-sm line-clamp-2">
-          { post.excerpt }
-        </div>
-      </div>}
+      {
+        post.excerpt && (
+          <div class="hidden sm:block sm:mt-2">
+            <div class="text-neutral-500 dark:text-neutral-400 text-sm line-clamp-2">{post.excerpt}</div>
+          </div>
+        )
+      }
       <div class="inline-flex items-center flex-wrap text-neutral-800 dark:text-neutral-200 leading-none text-xs">
         <a href="#" class="relative flex items-center space-x-2">
-          <span class="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold shadow-inner rounded-full h-7 w-7 text-sm ring-1 ring-white dark:ring-neutral-900">
-            <Image src={meImg} alt="Nam Hoai Nguyen" class="absolute inset-0 w-full h-full object-cover"/>
+          <span
+            class="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold shadow-inner rounded-full h-7 w-7 text-sm ring-1 ring-white dark:ring-neutral-900"
+          >
+            <Image src={meImg} alt="Nam Hoai Nguyen" class="absolute inset-0 w-full h-full object-cover" />
           </span>
-          <span class="block text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white font-medium capitalize">
+          <span
+            class="block text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white font-medium capitalize"
+          >
             Nam Hoai Nguyen
           </span>
         </a>
@@ -41,11 +49,19 @@ const {image = '', categories = [], video = ''} = post;
       </div>
     </div>
   </div>
-  {image && <div class="block flex-shrink-0 w-24 sm:w-36 md:w-44 xl:w-56 ms-3 sm:ms-6 rounded-3xl overflow-hidden z-0 mb-5 sm:mb-0">
-    <a href={post.permalink} class="block w-full h-0 aspect-h-1 aspect-w-1 relative">
-      <div class="absolute inset-0">
-        <Image src={post.image} alt={post.title} class="object-cover w-full h-full rounded-3xl group-hover:scale-105 transition-transform duration-500 " />
+  {
+    image && (
+      <div class="block flex-shrink-0 w-24 sm:w-36 md:w-44 xl:w-56 ms-3 sm:ms-6 rounded-3xl overflow-hidden z-0 mb-5 sm:mb-0">
+        <a href={post.permalink} class="block w-full h-0 aspect-h-1 aspect-w-1 relative">
+          <div class="absolute inset-0">
+            <Image
+              src={post.image}
+              alt={post.title}
+              class="object-cover w-full h-full rounded-3xl group-hover:scale-105 transition-transform duration-500 "
+            />
+          </div>
+        </a>
       </div>
-    </a>
-  </div> }
+    )
+  }
 </div>

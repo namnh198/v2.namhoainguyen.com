@@ -1,4 +1,4 @@
-import type {AstroComponentFactory} from 'astro/dist/runtime/server';
+import type { AstroComponentFactory } from 'astro/dist/runtime/server';
 
 export interface Image {
   src: string;
@@ -24,7 +24,7 @@ export interface Post {
   permalink: string;
   title: string;
   excerpt?: string;
-  image?: any;
+  image?: Image;
   video?: string;
   categories?: Array<Category>;
   tags?: Array<string>;
@@ -32,7 +32,7 @@ export interface Post {
   part?: number;
   draft?: boolean;
   private?: boolean;
-  publishedAt?: Date;
+  publishedAt: Date;
   updatedAt?: Date;
   content?: string;
   Content?: AstroComponentFactory;

@@ -1,6 +1,6 @@
 import {defineConfig} from 'astro/config';
 
-import tailwind from "@astrojs/tailwind";
+import tailwind from '@astrojs/tailwind';
 import icon from 'astro-icon';
 
 // https://astro.build/config
@@ -11,10 +11,10 @@ export default defineConfig({
     }),
     icon({
       include: {
-        'tabler': ['*'],
+        tabler: ['*'],
         'fa6-brands': ['*'],
-        'heroicons': ['*']
-      }  
+        heroicons: ['*'],
+      },
     }),
-  ]
+  ],
 });

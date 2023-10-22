@@ -12,7 +12,7 @@ interface Props {
   posts: Post[];
 }
 
-const { metadata, page, type = '', posts } = Astro.props;
+const { metadata, page, type = '' } = Astro.props;
 const header = {
   title: metadata.title,
   total: page.total,

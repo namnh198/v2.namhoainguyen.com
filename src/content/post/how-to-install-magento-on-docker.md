@@ -7,7 +7,8 @@ part: 1
 topics:
   - magento
 ---
-Magento is an open source application to build eCommerce websites that is used to manage all store processes like "Shipping", "Billing", "Checkout" and more. 
+
+Magento is an open source application to build eCommerce websites that is used to manage all store processes like "Shipping", "Billing", "Checkout" and more.
 It's using the main language PHP and MVC models as the foundation. With a relatively large platform like Magento, installing it to run take a lot of time with a lot of related configuration.
 Therefore, you will ask yourself question
 
@@ -18,7 +19,7 @@ But you do not understand "How to install & configuration Magento for Docker". D
 
 ## Some common prerequisites:
 
-### Install Docker 
+### Install Docker
 
 Obviously, the first step you have to do is to download and install Docker. Now the Docker platform is available on all operating system. Whether you are using any operating system, you can also install and start it up
 You can see [this link](https://docs.docker.com/engine/install/) to download & install Docker
@@ -26,15 +27,19 @@ You can see [this link](https://docs.docker.com/engine/install/) to download & i
 ### Download Magento
 
 According to Magento's documentation, there are 2 ways for you to get the source code of Magento 2
+
 - Use **composer** to create project
+
 ```bash
 composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition <install-directory-name>
 ```
+
 - Use **GIT** download directly from the homepage at github or magento.com
 
 ### Necessary requirements when installing Magento
 
 Regarding the operating system, of course it will be Linux (Ubuntu, Debian, CentOS,...) according to Magento's Docs, the do not guarantee running on Window or MacOS operating system. In fact, my experience is that even through it can be installed on these operating systems, its loading speed is quite slow, Linux is still the best choice. The operating system requires you must be installed:
+
 - PHP >= 8.1 (should use version 8.2)
 - Composer >= 2.2
 - MySQL >= 8.0 or MariaDB >= 10.6
@@ -42,7 +47,7 @@ Regarding the operating system, of course it will be Linux (Ubuntu, Debian, Cent
 - Redis >= 7.0 (Optional)
 - RabbitMQ >= 3.11 (Optional)
 
-## Build Docker 
+## Build Docker
 
 The problem requirements are there, now let's get started
 
@@ -56,11 +61,11 @@ services:
   php:
     #
   mysql:
-   #
+    #
   phpmyadmin:
-   #
+    #
   elasticsearch:
-   #
+    #
 ```
 
 ### PHP-FPM
@@ -75,13 +80,13 @@ Next is the container for the Nginx web server, which is responsible for communi
 
 ```yaml
 nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - "./docker/config/nginx/:/etc/nginx/conf.d/"
-      - "./docker/logs/nginx/:/var/log/nginx/"
-      - "./:/var/www/html"
+  image: nginx:latest
+  ports:
+    - '80:80'
+  volumes:
+    - './docker/config/nginx/:/etc/nginx/conf.d/'
+    - './docker/logs/nginx/:/var/log/nginx/'
+    - './:/var/www/html'
 ```
 
 File Configuration Nginx
@@ -107,27 +112,27 @@ Similarly, we can also use the mysql image directly and create users and databas
 
 ```yaml
 mysql:
-    image: mysql:8.0
-    restart: always
-    command: --default-authentication-plugin=mysql_native_password
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "false"
-      MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_DATABASE: magento
-    volumes:
-      - "./docker/data/mysql/:/var/lib/mysql/"
+  image: mysql:8.0
+  restart: always
+  command: --default-authentication-plugin=mysql_native_password
+  environment:
+    MYSQL_ALLOW_EMPTY_PASSWORD: 'false'
+    MYSQL_ROOT_PASSWORD: 'root'
+    MYSQL_DATABASE: magento
+  volumes:
+    - './docker/data/mysql/:/var/lib/mysql/'
 ```
 
-You can publish the port *3306* to connect to MySQL on the host machine or you can also use *phpmyadmin*
+You can publish the port _3306_ to connect to MySQL on the host machine or you can also use _phpmyadmin_
 
 ```yaml
 phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    restart: always
-    ports:
-      - '8080:80'
-    environment:
-      PMA_HOST: mysql
+  image: phpmyadmin/phpmyadmin
+  restart: always
+  ports:
+    - '8080:80'
+  environment:
+    PMA_HOST: mysql
 ```
 
 Now you can access phpmyadmin with the path **http://localhost:8080**
@@ -146,10 +151,11 @@ elasticsearch:
   environment:
     - discovery.type=single-node
   volumes:
-    - "./docker/data/elasticsearch/:/usr/share/elasticsearch/data/"
+    - './docker/data/elasticsearch/:/usr/share/elasticsearch/data/'
 ```
 
 The full **docker-compose** file:
+
 ```yaml
 
 ```

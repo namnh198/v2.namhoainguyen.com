@@ -6,45 +6,45 @@ export interface NavbarItemType {
 export const navigation = [
   {
     name: 'Home',
-    permalink: '/'
+    permalink: '/',
   },
   {
     name: 'About',
-    permalink: '/about'
+    permalink: '/about',
   },
   {
     name: 'Blog',
-    permalink: '/blog'
+    permalink: '/blog',
   },
   {
     name: 'Series',
-    permalink: '/series'
+    permalink: '/series',
   },
   {
     name: 'Tags',
-    permalink: 'tags'
-  }
+    permalink: 'tags',
+  },
 ] as NavbarItemType[];
 
 export const footerSocial = [
   {
     name: 'Facebook',
     permalink: '',
-    icon: 'fa6-brands:square-facebook'
+    icon: 'fa6-brands:square-facebook',
   },
   {
     name: 'Linkedin',
     permalink: '',
-    icon: 'fa6-brands:linkedin'
+    icon: 'fa6-brands:linkedin',
   },
   {
     name: 'Github',
     permalink: '',
-    icon: 'fa6-brands:square-github'
+    icon: 'fa6-brands:square-github',
   },
   {
     name: 'Youtube',
     permalink: '',
-    icon: 'fa6-brands:square-youtube'
-  }
-]
+    icon: 'fa6-brands:square-youtube',
+  },
+];
