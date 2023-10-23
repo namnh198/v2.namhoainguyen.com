@@ -19,3 +19,105 @@
     transform: translateX(0) !important;
   }
 }
+
+@layer components {
+  .p-responsive {
+    @apply px-4 xl:px-16;
+  }
+  .animation-wave {
+    animation-name: wave-animation;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    transform-origin: 70% 70%;
+  }
+
+  .single-post img {
+    @apply rounded-2xl;
+  }
+
+  .single-post .astro-code {
+    @apply p-6 rounded-2xl relative !bg-[var(--tw-prose-pre-bg)];
+  }
+
+  .single-post .astro-code .clipboard-copy {
+    @apply flex items-center absolute z-20 top-0 right-0 p-2 m-2 cursor-pointer rounded text-neutral-300 opacity-0 transition-opacity duration-300;
+  }
+
+  .single-post .astro-code:hover .clipboard-copy {
+    opacity: 1;
+  }
+
+  .single-post .astro-code .clipboard-copy:hover,
+  .single-post .astro-code .clipboard-copy.copied {
+    @apply bg-neutral-900;
+  }
+
+  .single-post .astro-code .clipboard-copy.copied > .copy {
+    display: none;
+  }
+
+  .single-post .astro-code .clipboard-copy.copied > .success {
+    @apply inline-flex items-center text-xs font-sans;
+  }
+
+  .single-post .astro-code .clipboard-copy > .copy {
+    @apply inline-flex items-center;
+  }
+
+  .single-post .astro-code .clipboard-copy > .success {
+    display: none;
+  }
+
+  .single-post .astro-code .clipboard-copy svg {
+    @apply inline-block;
+  }
+
+  .single-post .astro-code:hover .clipboard-copy {
+    opacity: 1;
+  }
+
+  .modal > .backdrop,
+  .modal > .modal-content {
+    display: none;
+  }
+
+  .modal.show > .backdrop,
+  .modal.show > .modal-content {
+    display: block;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

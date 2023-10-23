@@ -4,6 +4,7 @@ updatedAt: 2023-01-02T00:00:00Z
 title: Take a 3D tour through a Microsoft datacenter?
 excerpt: Immerse yourself in the world of literature with our curated collection of books. From bestsellers to hidden gems, our assortment caters to a variety of interests and genres.
 image: ./img/pexels-photo-6153354-1.webp
+video: https://www.youtube.com/watch?v=nOQyWbPO2Ds
 series: 'Markdown Cheatsheet'
 part: 1
 draft: false

@@ -1,0 +1,95 @@
+---
+import { Post } from '~/types';
+import { getFormattedDate, getGithubContentUrl } from '~/utils/utils';
+import meImg from '~/assets/images/me.png';
+import { Image } from 'astro:assets';
+import MediaRunning from '~/components/Header/MediaRunning';
+import { Icon } from 'astro-icon/components';
+import Badges from '~/components/Badges.astro';
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+---
+
+<header class="container relative py-14 xl:py-20 flex flex-col xl:flex-row xl:items-center">
+  <div
+    class="absolute inset-y-0 transform translate-x-1/2 end-1/2 w-screen xl:translate-x-0 xl:w-[calc(100vw/2)] bg-neutral-900 dark:bg-black dark:bg-opacity-50 xl:rounded-e-[40px]"
+  >
+  </div>
+  <div class="pb-10 xl:pb-0 xl:pr-10 relative">
+    <div class="space-y-4 md:space-y-5 dark text-neutral-100">
+      <Badges badges={post.categories} />
+      <h1
+        class="text-neutral-900 font-semibold text-2xl sm:text-3xl md:!leading-[120%] dark:text-neutral-100 max-w-4xl"
+      >
+        {post.title}
+      </h1>
+      {
+        post.excerpt && (
+          <div class="text-sm text-neutral-500 lg:text-lg dark:text-neutral-400 pb-1 max-w-screen-sm">
+            <span class="line-clamp-2">{post.excerpt}</span>
+          </div>
+        )
+      }
+      <div class="w-full border-b border-neutral-100 dark:border-neutral-800"></div>
+      <div class="flex flex-col gap-5">
+        <div
+          class="flex items-center flex-wrap text-neutral-700 text-left dark:text-neutral-200 text-base leading-none flex-shrink-0"
+        >
+          <div class="flex items-center space-x-2">
+            <div
+              class="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold shadow-inner rounded-full h-10 w-10 sm:h-11 sm:w-11 text-xl ring-1 ring-white dark:ring-neutral-900"
+            >
+              <Image src={meImg} alt="Nam Hoai Nguyen" class="absolute inset-0 w-full h-full object-cover" />
+            </div>
+          </div>
+          <div class="ms-3">
+            <div class="flex items-center">
+              <h3 class="font-semibold">Nam Hoai Nguyen</h3>
+            </div>
+            <div class="text-xs mt-[6px]">
+              <span class="text-neutral-700 dark:text-neutral-300">{getFormattedDate(post.publishedAt)}</span>
+              <span class="mx-2 font-semibold">·</span>
+              <span class="text-neutral-700 dark:text-neutral-300">{post.readingTime} min read</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-row space-x-2 sm:space-x-2.5 items-center">
+          <div class="flex items-center gap-x-2 sm:gap-x-2.5">
+            <a
+              href={getGithubContentUrl(post.id)}
+              class="relative flex items-center leading-none group/PostCardLikeAction transition-colors text-xs text-neutral-700 dark:text-neutral-200 hover:text-rose-600 dark:hover:text-rose-500"
+            >
+              <span
+                class="h-9 w-9 transition-colors duration-75 flex-shrink-0 flex items-center justify-center rounded-full bg-neutral-50 dark:bg-neutral-800 group-hover/PostCardLikeAction:bg-rose-50 dark:group-hover/PostCardLikeAction:bg-rose-100"
+              >
+                <Icon name="heroicons:fire" class="w-5 h-5" />
+              </span>
+            </a>
+            <a
+              href="#comments"
+              class="group/PostCardCommentBtn relative flex items-center text-neutral-600 transition-colors dark:text-neutral-200 hover:text-teal-600 dark:hover:text-teal-500 text-xs"
+            >
+              <span
+                class="flex-shrink-0 flex items-center justify-center rounded-full bg-neutral-50 transition-colors duration-75 dark:bg-neutral-800 group-hover/PostCardCommentBtn:bg-teal-50 dark:group-hover/PostCardCommentBtn:bg-teal-100 w-9 h-9"
+              >
+                <Icon name="heroicons:chat-bubble-left-ellipsis" class="w-4 h-4" />
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="relative xl:w-8/12 flex-shrink-0">
+    <div
+      class="aspect-w-16 aspect-h-16 sm:aspect-h-9 border-4 border-neutral-300 dark:border-neutral-800 shadow-2xl bg-neutral-800 rounded-3xl overflow-hidden z-0"
+    >
+      <div class="absolute inset-0 w-full h-full">
+        {post.video ? <MediaRunning client:load video={post.video} /> : <Image src={post.image} alt={post.title} />}
+      </div>
+    </div>
+  </div>
+</header>

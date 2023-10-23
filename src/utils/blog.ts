@@ -15,7 +15,7 @@ const getNormalizedCategory = (category: CollectionEntry<'category'>): Category 
 
 const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> => {
   const { id, slug, data } = post;
-  const { Content } = await post.render();
+  const { Content, remarkPluginFrontmatter } = await post.render();
   const {
     title,
     publishedAt: rawPublishedAt = new Date(),
@@ -38,17 +38,29 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
   const publishedAt = new Date(rawPublishedAt);
   const updatedAt = rawUpdateDate ? new Date(rawUpdateDate) : undefined;
 
-  return { id, slug, permalink, title, categories, tags, publishedAt, updatedAt, Content, ...rest };
+  return {
+    id,
+    slug,
+    permalink,
+    title,
+    categories,
+    tags,
+    publishedAt,
+    updatedAt,
+    Content,
+    readingTime: remarkPluginFrontmatter?.readingTime,
+    ...rest,
+  };
 };
 
 export const getStaticPathsBlogList = async ({ paginate }: GetStaticPathsOptions) => {
-  const posts = await fetchPost();
+  const posts = await fetchPosts();
   return paginate(posts, {
     pageSize: config.postsPerPage,
   });
 };
 
-export const fetchPost = async () => {
+export const fetchPosts = async () => {
   const posts = await getCollection('post', ({ data }) => {
     return import.meta.env.NODE_ENV === 'production' ? true : !data.draft;
   });
@@ -71,8 +83,17 @@ export const fetchCategories = async () => {
   return categories.map(getNormalizedCategory);
 };
 
+export const getStaticPathPost = async () => {
+  return (await fetchPosts()).flatMap((post) => ({
+    params: {
+      slug: post.slug,
+    },
+    props: { post },
+  }));
+};
+
 export const searchIndex = async (): Promise<Array<SearchIndex>> => {
-  const posts = await fetchPost();
+  const posts = await fetchPosts();
   const tags = new Set();
   const categories = new Set();
   const searchIndex: SearchIndex[] = [];
@@ -115,7 +136,7 @@ export const searchIndex = async (): Promise<Array<SearchIndex>> => {
 export const getPermalink = (slug: string = '', prefix: string = ''): string => {
   let permalink: string = '/';
   if (prefix) {
-    permalink += prefix;
+    permalink += prefix + '/';
   }
   permalink += slugify(slug);
   return permalink;

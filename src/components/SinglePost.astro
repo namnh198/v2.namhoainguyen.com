@@ -1,0 +1,82 @@
+---
+import type { Post } from '~/types';
+import ScrollToTop from './ScrollToTop';
+import meImg from '~/assets/images/me.png';
+import { Image } from 'astro:assets';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { Content } = post;
+---
+
+<div class="container flex flex-col my-10 lg:flex-row">
+  <div
+    class:list={{
+      'w-full lg:w-3/5 xl:w-2/3 xl:pe-20': true,
+    }}
+  >
+    <div class="relative flex flex-col">
+      <div class="flex-1 space-y-10">
+        <div id="single-entry-content" class="single-post prose lg:prose-lg !max-w-screen-md mx-auto dark:prose-invert">
+          <Content />
+        </div>
+        {
+          post.tags && (
+            <div class="max-w-screen-md mx-auto flex flex-wrap">
+              {post.tags.map((tag) => (
+                <a
+                  href={tag.permalink}
+                  class="inline-block bg-white hover:bg-neutral-50 text-sm text-neutral-600 dark:text-neutral-300 py-2 px-3 rounded-lg md:py-2.5 md:px-4 dark:bg-neutral-900 me-2 mb-2 border border-neutral-200 dark:border-neutral-800"
+                >{`#${tag.title}`}</a>
+              ))}
+            </div>
+          )
+        }
+        <div class="max-w-screen-md mx-auto border-b border-t border-neutral-100 dark:border-neutral-700"></div>
+        <div class="max-w-screen-md mx-auto">
+          <div class="flex">
+            <div>
+              <div
+                class="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center overflow-hidden text-neutral-100 uppercase font-semibold shadow-inner rounded-2xl sm:rounded-3xl h-12 w-12 text-lg sm:text-xl md:h-24 sm:w-24 ring-1 ring-white dark:ring-neutral-900"
+              >
+                <Image src={meImg} alt="Nam Hoai Nguyen" class="absolute inset-0 w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="flex flex-col ms-3 max-w-lg sm:ms-5">
+              <span class="text-xs text-neutral-400 uppercase tracking-wider">WRITTEN BY</span>
+              <h2 class="text-base sm:text-lg font-semibold text-neutral-900 dark:text-neutral-200">Nam Hoai Nguyen</h2>
+              <span class="block mt-1 text-sm text-neutral-500 sm:text-base dark:text-neutral-300"
+                >Make it work, make it right, make it fast</span
+              >
+            </div>
+          </div>
+        </div>
+        <div id="comments" class="scroll-mt-10 sm:scroll-mt-20 max-w-screen-md mx-auto">
+          <div class="max-w-screen-md mx-auto pt-5">
+            <h3 class="text-lg xl:text-xl font-semibold text-neutral-800 dark:text-neutral-200">Comments</h3>
+          </div>
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="namnh198/namhoainguyen.com"
+            data-repo-id="R_kgDOKiiGwA"
+            data-category="General"
+            data-category-id="DIC_kwDOKiiGwM4CaRff"
+            data-mapping="title"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="light"
+            data-lang="en"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async></script>
+        </div>
+        <ScrollToTop postId={post.id} client:load />
+      </div>
+    </div>
+  </div>
+</div>

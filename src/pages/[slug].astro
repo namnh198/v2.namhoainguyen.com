@@ -1,0 +1,27 @@
+---
+import { getStaticPathPost } from '~/utils/blog';
+import { Post, Metadata } from '~/types';
+import PageLayout from '~/layouts/PageLayout.astro';
+import HeaderSinglePost from '~/components/Header/SinglePost.astro';
+import SinglePost from '~/components/SinglePost.astro';
+
+export async function getStaticPaths() {
+  return await getStaticPathPost();
+}
+
+interface Props {
+  post: Post;
+}
+
+const { post, ...props } = Astro.props;
+const metadata: Metadata = {
+  title: post.title,
+};
+---
+
+<PageLayout metadata={metadata} {...props} activeMenu="Blog">
+  <div class="relative">
+    <HeaderSinglePost post={post} />
+    <SinglePost post={post} />
+  </div>
+</PageLayout>
