@@ -4,8 +4,6 @@ import HeroCover from '~/components/HeroCover/HeroCover.astro';
 import { getCollection } from  'astro:content';
 
 const category = await getCollection('category');
-
-console.log(category)
 ---
 
 <PageLayout metadata={{ title: 'Welcome to Astro' }} activeMenu="Home">
