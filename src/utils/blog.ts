@@ -75,12 +75,37 @@ export const fetchPosts = async () => {
   );
 };
 
-export const fetchCategories = async () => {
+export const fetchCategories = async (): Promise<Category[]> => {
   const categories = await getCollection('category');
+  const posts = await fetchPosts();
+
   if (!categories || categories.length < 1) {
     return [];
   }
-  return categories.map(getNormalizedCategory);
+  return categories.flatMap((category) => {
+    const newCategory = getNormalizedCategory(category);
+    newCategory.posts = posts.filter(
+      (post) => Array.isArray(post.categories) && post.categories.find((t) => t.id === category.id)
+    );
+    return newCategory;
+  });
+};
+
+export const fetchTags = async (): Promise<Tag[]> => {
+  const posts = await fetchPosts();
+  const tags = {};
+
+  posts.map((post) => {
+    Array.isArray(post.tags) &&
+      post.tags.map((tag) => {
+        if (!tags.hasOwnProperty(tag.id)) {
+          // @ts-ignore
+          tags[tag.id] = tag;
+        }
+      });
+  });
+
+  return Object.values(tags);
 };
 
 export const getStaticPathPost = async () => {

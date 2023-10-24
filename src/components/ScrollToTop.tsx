@@ -30,7 +30,7 @@ export default function ScrollToTop({ postId }: { postId: string }) {
   }, []);
 
   return (
-    <div className="inline-flex self-center gap-1 sm:gap-2 sticky mt-8 bottom-5 sm:bottom-8 z-40 justify-center items-center opacity-100">
+    <div className="text-center inline-flex self-center gap-1 sm:gap-2 sticky mt-8 bottom-5 sm:bottom-8 z-40 justify-center items-center opacity-100">
       <div className="bg-white dark:bg-neutral-800 shadow-lg rounded-full ring-1 ring-offset-1 ring-neutral-900/5 p-1.5 flex items-center justify-center gap-1 sm:gap-2 text-xs">
         <div className="relative flex items-center leading-none group transition-colors text-xs  text-neutral-700 dark:text-neutral-200  hover:text-rose-600 dark:hover:text-rose-500">
           <a

@@ -1,0 +1,132 @@
+---
+import { fetchCategories, fetchTags } from '~/utils/blog';
+import fbImg from '~/assets/images/socials/facebook.svg';
+import linkedinImg from '~/assets/images/socials/linkedin-in.svg';
+import ytbImg from '~/assets/images/socials/youtube.svg';
+import githubImg from '~/assets/images/socials/github.svg';
+import { Image } from 'astro:assets';
+const categories = await fetchCategories();
+const tags = await fetchTags();
+---
+
+<div class="space-y-6">
+  <div class="overflow-hidden rounded-3xl border border-neutral-100 dark:border-neutral-700">
+    <div class="flex items-center justify-between p-4 border-b border-neutral-100 dark:border-neutral-700">
+      <h2 class="flex flex-wrap gap-3 text-base font-semibold text-neutral-900 dark:text-neutral-100">
+        <span>🧬 We are on socials</span>
+      </h2>
+    </div>
+    <div class="grid grid-cols-2">
+      <a href="#" class="flex gap-3 items-center p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
+        <span
+          class="relative mt-1 flex-shrink-0 flex h-12 w-12 items-center justify-center rounded-full shadow-lg shadow-neutral-800/5 ring-1 ring-neutral-900/5 dark:border dark:border-neutral-700/50 dark:bg-neutral-400 dark:ring-0"
+        >
+          <Image src={fbImg} alt="Facebook" width="36" height="36" />
+        </span>
+        <span class="flex flex-col gap-1">
+          <span class="w-full flex-none text-sm font-medium text-neutral-900 dark:text-neutral-100 capitalize"
+            >Facebook</span
+          >
+          <span class="text-xs text-neutral-500 dark:text-neutral-400">
+            <span class="line-clamp-1">Follow us on Facebook</span>
+          </span>
+        </span>
+      </a>
+      <a href="#" class="flex gap-3 items-center p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
+        <span
+          class="relative mt-1 flex-shrink-0 flex h-12 w-12 items-center justify-center rounded-full shadow-lg shadow-neutral-800/5 ring-1 ring-neutral-900/5 dark:border dark:border-neutral-700/50 dark:bg-neutral-400 dark:ring-0"
+        >
+          <Image src={linkedinImg} alt="Linkedin" width="28" height="28" />
+        </span>
+        <span class="flex flex-col gap-1">
+          <span class="w-full flex-none text-sm font-medium text-neutral-900 dark:text-neutral-100 capitalize"
+            >Linkedin</span
+          >
+          <span class="text-xs text-neutral-500 dark:text-neutral-400">
+            <span class="line-clamp-1">Follow us on Linkedin</span>
+          </span>
+        </span>
+      </a>
+      <a href="#" class="flex gap-3 items-center p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
+        <span
+          class="relative mt-1 flex-shrink-0 flex h-12 w-12 items-center justify-center rounded-full shadow-lg shadow-neutral-800/5 ring-1 ring-neutral-900/5 dark:border dark:border-neutral-700/50 dark:bg-neutral-400 dark:ring-0"
+        >
+          <Image src={githubImg} alt="Github" width="36" height="36" class="rounded-full" />
+        </span>
+        <span class="flex flex-col gap-1">
+          <span class="w-full flex-none text-sm font-medium text-neutral-900 dark:text-neutral-100 capitalize"
+            >Github</span
+          >
+          <span class="text-xs text-neutral-500 dark:text-neutral-400">
+            <span class="line-clamp-1">Follow us on Github</span>
+          </span>
+        </span>
+      </a>
+      <a href="#" class="flex gap-3 items-center p-4 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
+        <span
+          class="relative mt-1 flex-shrink-0 flex h-12 w-12 items-center justify-center rounded-full shadow-lg shadow-neutral-800/5 ring-1 ring-neutral-900/5 dark:border dark:border-neutral-700/50 dark:bg-neutral-400 dark:ring-0"
+        >
+          <Image src={ytbImg} alt="Youtube" width="36" height="36" class="rounded-full" />
+        </span>
+        <span class="flex flex-col gap-1">
+          <span class="w-full flex-none text-sm font-medium text-neutral-900 dark:text-neutral-100 capitalize"
+            >Youtube</span
+          >
+          <span class="text-xs text-neutral-500 dark:text-neutral-400">
+            <span class="line-clamp-1">Follow us on Youtube</span>
+          </span>
+        </span>
+      </a>
+    </div>
+  </div>
+  <div class="overflow-hidden rounded-3xl border border-neutral-100 dark:border-neutral-700">
+    <div class="flex items-center justify-between p-4 border-b border-neutral-100 dark:border-neutral-700">
+      <h2 class="flex flex-wrap gap-3 text-base font-semibold text-neutral-900 dark:text-neutral-100">
+        <span>✨All categories</span>
+      </h2>
+    </div>
+    <div class="flow-root">
+      <div class="grid grid-cols-2 divide-y divide-neutral-100 dark:divide-neutral-700">
+        {
+          categories &&
+            categories.map((category) => (
+              <a
+                href={category.permalink}
+                class="flex items-center p-4 xl:p-5 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+              >
+                <span class="relative flex-shrink-0 w-12 h-12 rounded-lg me-4 overflow-hidden">
+                  <Image src={category.image} alt={category.title} class="object-cover" />
+                </span>
+                <span>
+                  <h2 class="text-neutral-900 dark:text-neutral-100 text-sm sm:text-base font-medium sm:font-semibold">
+                    {category.title}
+                  </h2>
+                  <span class="text-xs block mt-[2px] text-neutral-500 dark:text-neutral-400">
+                    {category.posts.length} Articles
+                  </span>
+                </span>
+              </a>
+            ))
+        }
+      </div>
+    </div>
+  </div>
+  <div class="rounded-3xl border border-neutral-100 dark:border-neutral-700">
+    <div class="flex items-center justify-between p-4 border-b border-neutral-100 dark:border-neutral-700">
+      <h2 class="flex flex-wrap gap-3 text-base font-semibold text-neutral-900 dark:text-neutral-100">
+        <span>💡All Tags</span>
+      </h2>
+    </div>
+    <div class="flex flex-wrap p-4 xl:p-5">
+      {
+        tags &&
+          tags.map((tag) => (
+            <a
+              href={tag.permalink}
+              class="inline-block bg-white hover:bg-neutral-50 text-sm text-neutral-600 dark:text-neutral-300 py-2 px-3 rounded-lg md:py-2.5 md:px-4 dark:bg-neutral-900 me-2 mb-2 border border-neutral-200 dark:border-neutral-800"
+            >{`#${tag.title}`}</a>
+          ))
+      }
+    </div>
+  </div>
+</div>

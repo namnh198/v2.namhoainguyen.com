@@ -34,8 +34,8 @@ const searchData = await searchIndex();
       </nav>
       <div class="flex-1 flex items-center justify-end text-slate-700 gap-x-2">
         <div class="flex items-center justify-end gap-x-2">
-          <ToggleTheme client:only />
-          <Search client:only searchData={searchData} />
+          <ToggleTheme client:only="react" />
+          <Search client:only="react" searchData={searchData} />
         </div>
       </div>
     </div>

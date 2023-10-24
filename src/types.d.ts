@@ -19,6 +19,7 @@ export interface Category {
   color: string;
   image?: Image;
   excerpt?: string;
+  posts?: Post[];
 }
 
 export interface Tag {
