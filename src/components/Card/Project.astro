@@ -1,0 +1,29 @@
+---
+import { type Project } from '~/utils/about';
+import Tech from '~/components/Tech.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<div
+  class="relative p-5 group border border-neutral-200 hover:shadow-lg transition-shadow dark:border-neutral-700 rounded-3xl bg-white dark:bg-neutral-900"
+>
+  <a class="absolute inset-0 rounded-lg" href={project.url}></a>
+  <div class="flex flex-col">
+    <div class="flex flex-wrap space-x-2">
+      <a
+        class="transition-colors hover:text-white duration-300 inline-flex px-2.5 py-1 rounded-full font-medium text-xs relative text-yellow-800 bg-yellow-100 hover:bg-yellow-800"
+        href="#">Chrome Extension</a
+      >
+    </div>
+    <h2 class="block text-base font-semibold text-neutral-800 dark:text-neutral-300 mt-4">
+      <a class="line-clamp-2">{project.title}</a>
+    </h2>
+    <p class="mb-4 text-sm block mt-3.5 text-neutral-500 dark:text-neutral-400">{project.description}</p>
+    <Tech techs={project.techs} />
+  </div>
+</div>

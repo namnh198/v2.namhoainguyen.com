@@ -1,0 +1,29 @@
+---
+import { getTechs } from '~/utils/about';
+import { Image } from 'astro:assets';
+
+interface Props {
+  techs: Array<string>;
+  showName: boolean;
+}
+
+const { techs, showName } = Astro.props;
+//@ts-ignore
+const techDetail = await getTechs(techs);
+---
+
+{
+  techDetail && (
+    <div class="relative mt-3 flex flex-wrap space-x-2">
+      {techDetail.map((tech) => (
+        <a
+          href="#"
+          class="rounded-md text-xs space-x-1 p-1.5 flex items-center justify-center bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-200"
+        >
+          <Image src={tech.image} alt={tech.title} width="20" height="20" />
+          {showName && <span>{tech.title}</span>}
+        </a>
+      ))}
+    </div>
+  )
+}

@@ -30,7 +30,18 @@ const category = defineCollection({
     }),
 });
 
+const tech = defineCollection({
+  type: 'data',
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      image: image(),
+      url: z.string(),
+    }),
+});
+
 export const collections = {
   post,
   category,
+  tech,
 };

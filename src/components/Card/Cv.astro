@@ -1,0 +1,36 @@
+---
+import { CV } from '~/utils/about';
+import { Image } from 'astro:assets';
+import Tech from '~/components/Tech.astro';
+
+interface Props {
+  cv: CV;
+}
+
+const { cv } = Astro.props;
+---
+
+<div class="flex items-center p-4 xl:p-5">
+  <div class="flex flex-col items-center w-1/4 pe-4 space-y-3">
+    {
+      cv.logo && (
+        <div class="shrink-0 w-[calc(min(80px, 80%))] rounded-lg overflow-hidden">
+          <Image src={cv.logo} alt={cv.title} layout="contained" width="80" height="40" />
+        </div>
+      )
+    }
+    <div class="text-center">
+      <a class="text-lg sm:text-lg font-medium hover:text-indigo-500 line-clamp-1" href="#">{cv.where}</a>
+      <span class="text-sm text-neutral-500 dark:text-neutral-400">{cv.date}</span>
+    </div>
+  </div>
+  <div class="w-3/4">
+    <h4 class="text-neutral-900 dark:text-neutral-100 text-sm sm:text-base font-medium sm:font-semibold">{cv.title}</h4>
+    {
+      cv.activity.map((activity) => (
+        <p class="text-sm block mt-3.5 text-neutral-500 dark:text-neutral-400">{activity}</p>
+      ))
+    }
+    <Tech techs={cv.techs} />
+  </div>
+</div>
