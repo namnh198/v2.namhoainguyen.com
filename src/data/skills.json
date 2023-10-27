@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Frontend",
+    "tech": ["js", "nexjs"]
+  },
+  {
+    "name": "Backend",
+    "tech": ["php", "nodejs", "mysql", "mongodb"]
+  },
+  {
+    "name": "DevOps",
+    "tech": ["linux", "docker"]
+  }
+]

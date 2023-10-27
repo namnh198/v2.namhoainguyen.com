@@ -5,7 +5,9 @@ import aboutImg from '~/assets/images/about-hero-right.webp';
 import Tech from '~/components/Tech.astro';
 import CardCV from '~/components/Card/Cv.astro';
 import Project from '../components/Card/Project.astro';
-import { skills, experiences, educations, projects } from '~/utils/about';
+import { skills, cv, projects } from '~/utils/about';
+
+console.log(cv);
 const metadata = {
   title: 'About Us',
   description:
@@ -73,18 +75,18 @@ const metadata = {
           <span class="sr-only hidden">bg</span>
         </div>
         <div class="relative grid lg:grid-cols-2 lg:gap-8">
-          <div class="p-6 bg-white dark:bg-black/20 rounded-2xl dark:border-neutral-800">
-            <h3 class="text-2xl font-semibold leading-none text-neutral-900 dark:text-neutral-200">Experiences</h3>
-            <div class="flex flex-col mt-6 divide-y divide-neutral-200 dark:divide-neutral-700">
-              {experiences.map((experience) => <CardCV cv={experience} />)}
-            </div>
-          </div>
-          <div class="p-6 bg-white dark:bg-black/20 rounded-2xl dark:border-neutral-800">
-            <h3 class="text-2xl font-semibold leading-none text-neutral-900 dark:text-neutral-200">Education</h3>
-            <div class="flex flex-col mt-6 divide-y divide-neutral-200 dark:divide-neutral-700">
-              {educations.map((education) => <CardCV cv={education} />)}
-            </div>
-          </div>
+          {
+            cv.map((c) => (
+              <div class="p-6 bg-white dark:bg-black/20 rounded-2xl dark:border-neutral-800">
+                <h3 class="text-2xl font-semibold leading-none text-neutral-900 dark:text-neutral-200">{c.name}</h3>
+                <div class="flex flex-col mt-6 divide-y divide-neutral-200 dark:divide-neutral-700">
+                  {c.items.map((item) => (
+                    <CardCV cv={item} />
+                  ))}
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
       <div class="relative">
