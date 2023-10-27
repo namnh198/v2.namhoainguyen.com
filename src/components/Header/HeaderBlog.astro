@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { Icon } from 'astro-icon/components';
+import ShareLink from '../ShareLink';
 
 interface Props {
   title: string;
@@ -64,6 +65,9 @@ switch (type) {
           )
         }
       </div>
+    </div>
+    <div class="absolute top-5 end-5">
+      <ShareLink client:only="react" link={} />
     </div>
   </div>
 </div>

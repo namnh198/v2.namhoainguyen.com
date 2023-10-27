@@ -6,6 +6,7 @@ import { Image } from 'astro:assets';
 import MediaRunning from '~/components/Header/MediaRunning';
 import { Icon } from 'astro-icon/components';
 import Badges from '~/components/Badges.astro';
+import ShareLink from '~/components/ShareLink';
 interface Props {
   post: Post;
 }
@@ -78,6 +79,12 @@ const { post } = Astro.props;
                 <Icon name="heroicons:chat-bubble-left-ellipsis" class="w-4 h-4" />
               </span>
             </a>
+          </div>
+          <div class="px-1 mr-2.5">
+            <div class="border-s border-neutral-200 dark:border-neutral-700 h-5 sm:h-6"></div>
+          </div>
+          <div>
+            <ShareLink client:only="react" />
           </div>
         </div>
       </div>
