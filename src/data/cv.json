@@ -3,11 +3,11 @@
     "name": "Experience",
     "items": [
       {
-        "where": "NestJS",
-        "logo": "https://dinhanhthi.com/img/about/exp/ideta-single.png",
-        "title": "Software Engineer",
+        "where": "Forix",
+        "logo": "https://forixcommerce.com/wp-content/uploads/2017/11/forix_feature.png",
+        "title": "Magento Developer",
         "url": "https://nestjs.com/",
-        "date": "2022 - on going",
+        "date": "2020 - on going",
         "activity": [
           "Ideta is a solution that allows companies to very easily create conversational assistants for many communication channels like Messenger, SMS, Slack, Wechat, Skype Business, ... but also for voice like Google Home. The solution makes the creation of chatbots accessible to everyone.",
           "My job is to understand how things work both on the backend and on the frontend, and then integrate some Natural Language Processing services into the main platform."
@@ -18,11 +18,11 @@
         ]
       },
       {
-        "where": "NestJS",
-        "logo": "https://dinhanhthi.com/img/about/exp/ideta-single.png",
-        "title": "Software Engineer",
+        "where": "OpenTechiz",
+        "logo": "https://avatars.githubusercontent.com/u/46779407?v=4",
+        "title": "Magento Developer",
         "url": "https://nestjs.com/",
-        "date": "2022 - on going",
+        "date": "2020 - on going",
         "activity": [
           "Ideta is a solution that allows companies to very easily create conversational assistants for many communication channels like Messenger, SMS, Slack, Wechat, Skype Business, ... but also for voice like Google Home. The solution makes the creation of chatbots accessible to everyone.",
           "My job is to understand how things work both on the backend and on the frontend, and then integrate some Natural Language Processing services into the main platform."
