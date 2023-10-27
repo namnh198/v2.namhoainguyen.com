@@ -17,12 +17,12 @@ export const navigation = [
     permalink: '/blog',
   },
   {
-    name: 'Series',
-    permalink: '/series',
+    name: 'Tutorial',
+    permalink: '/tutorial',
   },
   {
-    name: 'Tags',
-    permalink: 'tags',
+    name: 'Topics',
+    permalink: 'topics',
   },
 ] as NavbarItemType[];
 

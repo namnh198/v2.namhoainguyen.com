@@ -1,0 +1,37 @@
+---
+import { fetchCategories, fetchTags } from '../utils/blog';
+
+const categories = await fetchCategories();
+
+import PageLayout from '~/layouts/PageLayout.astro';
+import HeaderBlog from '~/components/Header/HeaderBlog.astro';
+import CardTopic from '../components/Card/Topic.astro';
+
+const metadata = {
+  title: 'Topics',
+};
+
+const headers = {
+  title: metadata.title,
+  total: categories.length,
+  type: 'category',
+  excerpt: `<div class="items-center flex dark:text-neutral-400 text-neutral-500 flex-wrap font-normal mt-3 text-xl">You can use <kbd class="items-center flex justify-center bg-white border border-gray-400 font-semibold h-5 mx-1 rounded sm:mx-2 text-gray-900 text-sm w-fit">ctrl</kbd> <span>+</span> <kbd class="items-center flex justify-center bg-white border border-gray-400 font-semibold h-5 mx-1 rounded sm:mx-2 text-gray-900 text-sm w-5">F</kbd> <span>to quickly find a topic you wanna check.</span></div>`,
+};
+---
+
+<PageLayout metadata={metadata} activeMenu="Topics">
+  <HeaderBlog {...headers} />
+  <div class="container pt-10 pb-16 lg:pb-28 lg:pt-20 space-y-16 lg:space-y-28">
+    <div>
+      {
+        categories && (
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
+            {categories.map((category) => (
+              <CardTopic topic={category} />
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</PageLayout>
