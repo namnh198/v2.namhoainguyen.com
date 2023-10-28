@@ -4,89 +4,41 @@
     "description": "Developed jewelry eCommerce platform using Magento, Elasticsearch, and KnockoutJS, delivering seamless shopping experience and advanced search functionality.",
     "url": "https://glamira.co.uk/",
     "cat": "Magento",
-    "tech": [
-      "magento",
-      "php",
-      "mysql",
-      "redis",
-      "elasticsearch",
-      "js",
-      "less"
-    ]
+    "tech": ["magento", "php", "mysql", "redis", "elasticsearch", "js", "less"]
   },
   {
     "title": "Dropping Platform",
     "description": "Built a dropship eCommerce platform with Magento, Elasticsearch, and KnockoutJS, ensuring efficient order management and seamless inventory synchronization.",
     "url": "https://sellkorea.com/",
     "cat": "Magento",
-    "tech": [
-      "magento",
-      "php",
-      "mysql",
-      "redis",
-      "elasticsearch",
-      "js",
-      "less"
-    ]
+    "tech": ["magento", "php", "mysql", "redis", "elasticsearch", "js", "less"]
   },
   {
     "title": "Build API for POS Systems",
     "description": "Designed and implemented the API architecture, adhering to industry best practices and standards for security, scalability, and performance.",
     "url": "https://sellkorea.com/",
     "cat": "Magento",
-    "tech": [
-      "magento",
-      "php",
-      "mysql",
-      "redis",
-      "elasticsearch",
-      "js",
-      "less"
-    ]
+    "tech": ["magento", "php", "mysql", "redis", "elasticsearch", "js", "less"]
   },
   {
     "title": "SMS Notification Extension",
     "description": "Developed SMS notification extensions for Magento, enhancing customer engagement and order updates through real-time SMS notifications.",
     "url": "https://github.com/namnh198/magento-sms-notification",
     "cat": "Magento",
-    "tech": [
-      "magento",
-      "php",
-      "mysql",
-      "redis",
-      "elasticsearch",
-      "js",
-      "less"
-    ]
+    "tech": ["magento", "php", "mysql", "redis", "elasticsearch", "js", "less"]
   },
   {
     "title": "Mobile Login Extension",
     "description": "Implemented Magento extensions enabling seamless login with phone numbers, enhancing user experience and streamlining authentication processes.",
     "url": "https://github.com/namnh198/magento-mobile-login",
     "cat": "Magento",
-    "tech": [
-      "magento",
-      "php",
-      "mysql",
-      "redis",
-      "elasticsearch",
-      "js",
-      "less"
-    ]
+    "tech": ["magento", "php", "mysql", "redis", "elasticsearch", "js", "less"]
   },
   {
     "title": "Microsoft Clarity Extension",
     "description": "Created Magento extensions for tracking user behavior with Microsoft Clarity, providing valuable insights for website optimization and user experience enhancement.",
     "url": "https://github.com/namnh198/magento-microsoft-clarity",
     "cat": "Magento",
-    "tech": [
-      "magento",
-      "php",
-      "mysql",
-      "redis",
-      "elasticsearch",
-      "js",
-      "less"
-    ]
+    "tech": ["magento", "php", "mysql", "redis", "elasticsearch", "js", "less"]
   }
 ]

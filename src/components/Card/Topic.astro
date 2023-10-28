@@ -8,14 +8,18 @@ const { topic } = Astro.props;
 ---
 
 <a
-  class="nc-CardCategory2 relative flex flex-col items-center justify-center text-center px-3 py-5 sm:p-6 bg-white dark:bg-neutral-900 rounded-3xl transition-colors"
+  class="items-center flex border border-neutral-200/70 dark:border-neutral-700 rounded-xl p-2.5"
   href={topic.permalink}
 >
-  <div class="relative flex-shrink-0 w-20 h-20 rounded-full shadow-lg overflow-hidden z-0">
-    <Image src={topic.image} alt={topic.title} />
+  <div class="relative flex-shrink-0 overflow-hidden h-12 me-4 rounded-xl w-12">
+    <Image src={topic.image} alt={topic.title} class="object-cover" />
   </div>
-  <div class="mt-3">
-    <h2 class="text-base font-semibold">{topic.title}</h2>
-    <span class="block mt-1 text-sm text-neutral-500 dark:text-neutral-400">{topic.posts.length} Articles</span>
+  <div>
+    <h2
+      class="sm:text-base text-sm transition-colors dark:hover:text-indigo-300 dark:text-neutral-100 font-medium hover:text-indigo-900 sm:font-semibold text-neutral-900"
+    >
+      {topic.title}
+    </h2>
+    <span class="block dark:text-neutral-400 text-neutral-500 mt-[2px] text-xs">{topic.posts.length} Articles</span>
   </div>
 </a>
